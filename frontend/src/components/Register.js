@@ -13,13 +13,11 @@ const Register = () => {
   const handleSignup = (e) => {
     e.preventDefault();
     const passwordCheck = password == rePassword;
-    const checkEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
-      email
-    )
-      ? true
-      : false;
+    const checkEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email) ? true : false; //email validator regex
 
-    if (!passwordCheck) console.log("password does not match");
+    if (!passwordCheck) {
+      console.log("password does not match");
+    }
 
     if (!checkEmail) console.log("email is not valid");
 
@@ -40,10 +38,11 @@ const Register = () => {
       username: email,
       password: password,
     };
-    
+
     loginUser(userData);
   };
 
+  //send data to register routes using axios
   const registerUser = async (userData) => {
     const user = await axios.post("/register", userData);
 
@@ -60,63 +59,32 @@ const Register = () => {
   };
 
   const handleStateChange = () => {
-    setEmail('')
-    setPassword('')
-    setIsLogin(!isLogin)
-  }
+    setEmail("");
+    setPassword("");
+    setIsLogin(!isLogin);
+  };
+  //{`container ${!isLogin && "right-panel-active"}`} -> JS fun.. if not logged in, show register form and apply container and right panel active class
 
   return (
     <>
-      <div
-        className={`container ${!isLogin && "right-panel-active"}`}
-        id="container"
-      >
+      <div className={`container ${!isLogin && "right-panel-active"}`} id="container">
         <div className="form-container sign-up-container">
           <form action="#">
             <h1>Create Account</h1>
 
-            <input
-              type="text"
-              placeholder="First Name"
-              autoComplete="off"
-              onChange={(e) => setFirstName(e.target.value)}
-            />
-            <input
-              type="text"
-              placeholder="Last Name"
-              onChange={(e) => setLastName(e.target.value)}
-            />
-            <input
-              type="email"
-              placeholder="Email"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              onChange={(e) => setRePassword(e.target.value)}
-            />
+            <input type="text" placeholder="First Name" autoComplete="off" onChange={(e) => setFirstName(e.target.value)} />
+            <input type="text" placeholder="Last Name" onChange={(e) => setLastName(e.target.value)} />
+            <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
+            <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+            <input type="password" placeholder="Password" onChange={(e) => setRePassword(e.target.value)} />
             <button onClick={handleSignup}>Sign Up</button>
           </form>
         </div>
         <div className="form-container sign-in-container">
           <form action="#">
             <h1>Sign in</h1>
-            <input
-              type="email"
-              placeholder="Email"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
+            <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
+            <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
             <a href="#">Forgot your password?</a>
             <button onClick={handleLogin}>Sign In</button>
           </form>
@@ -125,25 +93,15 @@ const Register = () => {
           <div className="overlay">
             <div className="overlay-panel overlay-left">
               <h1>Welcome Back!</h1>
-              <p>
-                To keep connected with us please login with your personal info
-              </p>
-              <button
-                className="ghost"
-                id="signIn"
-                onClick={handleStateChange}
-              >
+              <p>To keep connected with us please login with your personal info</p>
+              <button className="ghost" id="signIn" onClick={handleStateChange}>
                 Sign In
               </button>
             </div>
             <div className="overlay-panel overlay-right">
               <h1>Hello, Friend!</h1>
               <p>Enter your personal details and start journey with us</p>
-              <button
-                className="ghost"
-                id="signUp"
-                onClick={handleStateChange}
-              >
+              <button className="ghost" id="signUp" onClick={handleStateChange}>
                 Sign Up
               </button>
             </div>

@@ -1,43 +1,44 @@
-import { useState } from 'react';
-import './App.css';
-import AddBook from './components/AddBook';
-import Card from './components/Card';
-import CardContainer from './components/CardContainer';
-import CardDetails from './components/CardDetails';
-import Hero from './components/Hero';
-import Navigation from './components/Navigation';
-import Register from './components/Register';
+import { useState } from "react";
+import "./App.css";
+import AddBook from "./components/AddBook";
+import Card from "./components/Card";
+import CardContainer from "./components/CardContainer";
+import CardDetails from "./components/CardDetails";
+import Hero from "./components/Hero";
+import Navigation from "./components/Navigation";
+import Register from "./components/Register";
 
 const App = () => {
-
-  const [showAdd, setShowAdd] = useState(false)
-  const [showDetails, setShowDetails] = useState(false)
-  const [selectedBook, setSelectedBook] = useState('')
+  const [showAdd, setShowAdd] = useState(false);
+  const [showDetails, setShowDetails] = useState(false);
+  const [selectedBook, setSelectedBook] = useState("");
 
   const handleAddBook = () => {
-    setShowAdd(true)
-  }
+    setShowAdd(true);
+  };
 
   const showBook = (book) => {
-    setSelectedBook(book)
-    setShowDetails(true)
-  }
+    setSelectedBook(book);
+    setShowDetails(true);
+  };
 
   return (
     <>
-     {/* <Navigation handleClick={handleAddBook}/> */}
+      {/* <Navigation handleClick={handleAddBook} /> */}
 
-    {/* {!showAdd && !showDetails && <> <Hero/> <CardContainer selectedBook={showBook}/> </>}
-    
-   { showAdd && <AddBook /> }
+      {!showAdd && !showDetails && (
+        <>
+          <Hero /> <CardContainer selectedBook={showBook} />
+        </>
+      )}
 
-   {showDetails && <CardDetails bookData={selectedBook}/>} */}
+      {showAdd && <AddBook />}
 
-   <Register />
-    
-    
-   </>
-  )
-}
+      {showDetails && <CardDetails bookData={selectedBook} />}
+
+      {/* <Register /> */}
+    </>
+  );
+};
 
 export default App;
